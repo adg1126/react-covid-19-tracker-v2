@@ -1,25 +1,31 @@
-import logo from './logo.svg';
+import React, { useEffect } from 'react';
 import './App.css';
+import MainContainer from './containers/MainContainer';
+import 'leaflet/dist/leaflet.css';
 
-function App() {
+export default function App({
+  fetchCountryDataStart,
+  fetchCountriesDataStart,
+  fetchCountriesStart,
+  fetchGraphDataStart,
+  country
+}) {
+  useEffect(() => {
+    fetchCountriesDataStart();
+    fetchCountriesStart();
+    fetchCountryDataStart(country);
+    fetchGraphDataStart(country);
+  }, [
+    fetchCountriesDataStart,
+    fetchCountriesStart,
+    fetchCountryDataStart,
+    fetchGraphDataStart,
+    country
+  ]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='app'>
+      <MainContainer />
     </div>
   );
 }
-
-export default App;

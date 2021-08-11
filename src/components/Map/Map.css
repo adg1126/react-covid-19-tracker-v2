@@ -1,0 +1,18 @@
+* {
+  background: none !important;
+}
+
+.mapContainer {
+  height: 500px;
+  padding: 1rem;
+  margin-top: 16px;
+  box-shadow: 0 0 8px -4px rgba(0, 0, 0, 0.5);
+}
+
+.mapContainer .leaflet-container {
+  height: 100%;
+}
+
+.leaflet-popup-content-wrapper {
+  background-color: white !important;
+}
