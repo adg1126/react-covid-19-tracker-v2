@@ -1,12 +1,14 @@
+import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import { selectCountries, selectCountry } from '../redux/data/dataSelectors';
-import { setCountry } from '../redux/data/dataActions';
+import { selectCountry, selectIsFetched } from '../redux/data/dataSelectors';
+
+import WithSpinner from './WithSpinner';
 import Main from '../components/Main';
 
 const mapStateToProps = createStructuredSelector({
-  countries: selectCountries,
-  country: selectCountry
+  country: selectCountry,
+  isFetched: selectIsFetched
 });
 
-export default connect(mapStateToProps, { setCountry })(Main);
+export default compose(connect(mapStateToProps), WithSpinner)(Main);

@@ -25,8 +25,8 @@ export default function MapCircles({ countriesData, caseType }) {
       key={country.country}
       center={{ lat: country.countryInfo.lat, lng: country.countryInfo.long }}
       fillOpacity={0.4}
-      color={caseTypeColors[caseType].rgba}
-      fillColor={caseTypeColors[caseType].rgba}
+      color={caseTypeColors[caseType].rgb}
+      fillColor={caseTypeColors[caseType].rgb}
       radius={
         Math.sqrt(country[caseType]) * caseTypeColors[caseType].multiplier
       }

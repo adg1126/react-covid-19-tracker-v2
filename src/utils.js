@@ -1,14 +1,14 @@
 export const caseTypeColors = {
   cases: {
-    rgba: 'rgba(0, 0, 255, 0.5)',
+    rgb: 'rgb(65, 105, 225)',
     multiplier: 300
   },
   recovered: {
-    rgba: 'rgba(0, 255, 0, 0.5)',
+    rgb: 'rgb(41, 171, 135)',
     multiplier: 200
   },
   deaths: {
-    rgba: 'rgba(255, 0, 0, 0.5)',
+    rgb: 'rgb(204, 16, 52)',
     multiplier: 1500
   }
 };

@@ -5,14 +5,23 @@ import { makeStyles, Card, CardContent, Typography } from '@material-ui/core';
 
 const useStyles = makeStyles(() => ({
   card: { cursor: 'pointer' },
-  cases: {
-    borderBottom: '10px solid rgba(0, 0, 255, 0.5)'
+  casesCard: {
+    borderBottom: '10px solid rgb(65, 105, 225)'
   },
-  recovered: {
-    borderBottom: '10px solid rgba(0, 255, 0, 0.5)'
+  recoveredCard: {
+    borderBottom: '10px solid rgb(41, 171, 135)'
   },
-  deaths: {
-    borderBottom: '10px solid rgba(255, 0, 0, 0.5)'
+  deathsCard: {
+    borderBottom: '10px solid rgb(204, 16, 52)'
+  },
+  casesText: {
+    color: 'rgb(65, 105, 225)'
+  },
+  recoveredText: {
+    color: 'rgb(41, 171, 135)'
+  },
+  deathsText: {
+    color: 'rgb(204, 16, 52)'
   }
 }));
 
@@ -31,12 +40,18 @@ export default function InfoCard({
   return (
     <Card
       className={
-        !_.isEmpty(caseType) ? [classes[caseType], classes.card].join(' ') : ''
+        !_.isEmpty(caseType)
+          ? [classes[`${caseType}Card`], classes.card].join(' ')
+          : ''
       }
       onClick={() => (!_.isEmpty(caseType) ? setCaseType(caseType) : null)}
     >
       <CardContent>
-        <Typography color='textSecondary'>{title}</Typography>
+        <Typography
+          className={!_.isEmpty(caseType) ? classes[`${caseType}Text`] : ''}
+        >
+          {title}
+        </Typography>
         {date && (
           <Typography color='textSecondary'>UPDATED ON: {date}</Typography>
         )}
@@ -45,7 +60,7 @@ export default function InfoCard({
             {p1} <CountUp start={0} end={p1Num} duration={2.5} separator=',' />
           </Typography>
         ) : null}
-        <Typography variant='h5'>
+        <Typography variant='body1'>
           {p2} <CountUp start={0} end={p2Num} duration={2.5} separator=',' />
         </Typography>
       </CardContent>

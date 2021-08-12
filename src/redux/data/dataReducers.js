@@ -1,7 +1,4 @@
 import {
-  FETCH_COUNTRIES_START,
-  FETCH_COUNTRIES_SUCCESS,
-  FETCH_COUNTRIES_FAILURE,
   FETCH_COUNTRY_DATA_START,
   FETCH_COUNTRY_DATA_SUCCESS,
   FETCH_COUNTRY_DATA_FAILURE,
@@ -18,7 +15,6 @@ import {
 
 const INITIAL_STATE = {
   country: '',
-  countries: [],
   countryData: {},
   countriesData: null,
   coords: { lat: 0, lng: 0 },
@@ -31,11 +27,7 @@ const INITIAL_STATE = {
 
 const dataReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case FETCH_COUNTRIES_START:
     case FETCH_COUNTRIES_DATA_START:
-      return { ...state, isFetched: false };
-    case FETCH_COUNTRIES_SUCCESS:
-      return { ...state, isFetched: true, countries: action.payload };
     case FETCH_COUNTRY_DATA_START:
       return { ...state, isFetched: false };
     case FETCH_COUNTRY_DATA_SUCCESS:
@@ -52,7 +44,6 @@ const dataReducer = (state = INITIAL_STATE, action) => {
       return { ...state, zoom: action.payload };
     case SET_CASE_TYPE:
       return { ...state, caseType: action.payload };
-    case FETCH_COUNTRIES_FAILURE:
     case FETCH_COUNTRY_DATA_FAILURE:
     case FETCH_COUNTRIES_DATA_FAILURE:
     case FETCH_GRAPH_DATA_FAILURE:

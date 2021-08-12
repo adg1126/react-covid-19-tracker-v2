@@ -5,9 +5,17 @@ const selectData = state => state.data;
 
 export const selectDataObj = createSelector([selectData], data => data.data);
 
-export const selectCountries = createSelector(
+export const selectCountriesData = createSelector(
   [selectData],
-  data => data.countries
+  data => data.countriesData
+);
+
+export const selectCountriesArr = createSelector(
+  [selectCountriesData],
+  countriesData =>
+    !_.isEmpty(countriesData)
+      ? Object.keys(countriesData).map(country => country)
+      : []
 );
 
 export const selectCountryData = createSelector(
@@ -15,25 +23,18 @@ export const selectCountryData = createSelector(
   data => data.countryData
 );
 
-export const selectCountryCoords = createSelector(
-  [selectCountryData],
-  countryData =>
-    !_.isEmpty(countryData?.countryInfo)
-      ? {
-          lat: countryData.countryInfo.lat,
-          lng: countryData.countryInfo.long
-        }
-      : null
-);
-
-export const selectCountriesData = createSelector(
-  [selectData],
-  data => data.countriesData
-);
-
 export const selectCountriesDataForPreview = createSelector(
   [selectCountriesData],
   countriesData => _.toArray(countriesData)
+);
+
+export const selectCountriesNameAndCoords = createSelector(
+  [selectCountriesDataForPreview],
+  countriesData =>
+    countriesData.map(({ country, countryInfo: { lat, long } }) => ({
+      country,
+      coords: { lat, lng: long }
+    }))
 );
 
 export const selectCountryDataFromCountriesData = country =>

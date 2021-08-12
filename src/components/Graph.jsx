@@ -3,8 +3,6 @@ import _ from 'lodash';
 import { Line } from 'react-chartjs-2';
 import numeral from 'numeral';
 import { Grid } from '@material-ui/core';
-import { useTheme } from '@material-ui/core/styles';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 const buildChartData = (data, caseType) => {
   const chartData = [];
@@ -66,16 +64,13 @@ const options = {
 };
 
 export default function Graph({ graphData, country, fetchGraphDataStart }) {
-  const theme = useTheme();
-  const matchesMD = useMediaQuery(theme.breakpoints.down('md'));
-
   useEffect(() => {
     fetchGraphDataStart(country);
   }, [fetchGraphDataStart, country]);
 
   return (
     <Grid container justifyContent='center'>
-      <Grid item style={{ width: matchesMD ? '90vw' : '50vw' }}>
+      <Grid item style={{ width: '100%' }}>
         {!_.isEmpty(graphData) ? (
           <Line
             options={options}

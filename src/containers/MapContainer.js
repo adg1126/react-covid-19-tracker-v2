@@ -1,17 +1,11 @@
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import {
-  selectCoords,
-  selectZoom,
-  selectCountryCoords
-} from '../redux/data/dataSelectors';
-import { setCoordinates, setZoom } from '../redux/data/dataActions';
+import { selectCoords, selectZoom } from '../redux/data/dataSelectors';
 import Map from '../components/Map/Map';
 
 const mapStateToProps = createStructuredSelector({
-  center: selectCoords,
-  zoom: selectZoom,
-  countryCoords: selectCountryCoords
+  coords: selectCoords,
+  zoom: selectZoom
 });
 
-export default connect(mapStateToProps, { setCoordinates, setZoom })(Map);
+export default connect(mapStateToProps)(Map);

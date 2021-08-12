@@ -21,7 +21,7 @@ export default function InfoCardGrid({ countryData, setCaseType }) {
       return [
         {
           caseType: 'cases',
-          title: 'INFECTED',
+          title: 'Infected',
           date: new Date(updated).toDateString(),
           p1: 'TODAY: ',
           p1Num: todayCases,
@@ -30,7 +30,7 @@ export default function InfoCardGrid({ countryData, setCaseType }) {
         },
         {
           caseType: 'recovered',
-          title: 'RECOVERED',
+          title: 'Recovered',
           date: new Date(updated).toDateString(),
           p1: 'TODAY: ',
           p1Num: todayRecovered,
@@ -39,7 +39,7 @@ export default function InfoCardGrid({ countryData, setCaseType }) {
         },
         {
           caseType: 'deaths',
-          title: 'DEATHS',
+          title: 'Deaths',
           date: new Date(updated).toDateString(),
           p1: 'TODAY: ',
           p1Num: todayDeaths,
@@ -47,7 +47,7 @@ export default function InfoCardGrid({ countryData, setCaseType }) {
           p2Num: deaths
         },
         {
-          title: 'COUNTRY',
+          title: countryData.country || 'Worldwide',
           p1: 'POPULATION:',
           p1Num: population,
           p2: 'TESTED: ',
@@ -58,9 +58,9 @@ export default function InfoCardGrid({ countryData, setCaseType }) {
   };
 
   return (
-    <Grid container justifyContent='space-between'>
+    <Grid container justifyContent='space-between' spacing={4}>
       {cardContent()?.map((c, i) => (
-        <Grid item key={i}>
+        <Grid item key={i} style={{ flexGrow: 1 }}>
           <InfoCard {...c} setCaseType={setCaseType} />
         </Grid>
       ))}

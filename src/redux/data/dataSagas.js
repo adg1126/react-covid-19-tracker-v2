@@ -2,13 +2,10 @@ import { takeLatest, put, all, select } from 'redux-saga/effects';
 import _ from 'lodash';
 import {
   FETCH_COUNTRIES_DATA_START,
-  FETCH_COUNTRIES_START,
   FETCH_COUNTRY_DATA_START,
   FETCH_GRAPH_DATA_START
 } from './dataActionTypes';
 import {
-  fetchCountriesSuccess,
-  fetchCountriesFailure,
   fetchCountryDataSuccess,
   fetchCountryDataFailure,
   fetchCountriesDataSuccess,
@@ -33,27 +30,6 @@ function* fetchCountriesDataAsync() {
 
 function* fetchCountriesDataStart() {
   yield takeLatest(FETCH_COUNTRIES_DATA_START, fetchCountriesDataAsync);
-}
-
-function* fetchCountriesAsync() {
-  try {
-    const res = yield fetch(`${url}/countries`);
-    const data = yield res.json();
-
-    yield put(
-      fetchCountriesSuccess(
-        data.map(({ country }) => ({
-          country
-        }))
-      )
-    );
-  } catch (err) {
-    yield put(fetchCountriesFailure(err.message));
-  }
-}
-
-function* fetchCountriesStart() {
-  yield takeLatest(FETCH_COUNTRIES_START, fetchCountriesAsync);
 }
 
 function* fetchCountryDataAsync({ payload: country }) {
@@ -131,7 +107,6 @@ function* fetchGraphDataStart() {
 export function* dataSagas() {
   yield all([
     fetchCountriesDataStart(),
-    fetchCountriesStart(),
     fetchCountryDataStart(),
     fetchGraphDataStart()
   ]);

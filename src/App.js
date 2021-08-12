@@ -4,20 +4,17 @@ import MainContainer from './containers/MainContainer';
 import 'leaflet/dist/leaflet.css';
 
 export default function App({
-  fetchCountryDataStart,
   fetchCountriesDataStart,
-  fetchCountriesStart,
+  fetchCountryDataStart,
   fetchGraphDataStart,
   country
 }) {
   useEffect(() => {
     fetchCountriesDataStart();
-    fetchCountriesStart();
     fetchCountryDataStart(country);
     fetchGraphDataStart(country);
   }, [
     fetchCountriesDataStart,
-    fetchCountriesStart,
     fetchCountryDataStart,
     fetchGraphDataStart,
     country

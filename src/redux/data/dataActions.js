@@ -1,7 +1,4 @@
 import {
-  FETCH_COUNTRIES_START,
-  FETCH_COUNTRIES_SUCCESS,
-  FETCH_COUNTRIES_FAILURE,
   FETCH_COUNTRY_DATA_START,
   FETCH_COUNTRY_DATA_SUCCESS,
   FETCH_COUNTRY_DATA_FAILURE,
@@ -16,20 +13,6 @@ import {
   SET_ZOOM,
   SET_CASE_TYPE
 } from './dataActionTypes';
-
-export const fetchCountriesStart = () => ({
-  type: FETCH_COUNTRIES_START
-});
-
-export const fetchCountriesSuccess = countriesArr => ({
-  type: FETCH_COUNTRIES_SUCCESS,
-  payload: countriesArr
-});
-
-export const fetchCountriesFailure = errMsg => ({
-  type: FETCH_COUNTRIES_FAILURE,
-  payload: errMsg
-});
 
 export const fetchCountryDataStart = country => ({
   type: FETCH_COUNTRY_DATA_START,
